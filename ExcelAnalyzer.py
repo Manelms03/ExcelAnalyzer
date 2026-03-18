@@ -14,13 +14,6 @@ pd.set_option('display.max_colwidth', None)
 
 CATEGORY_RULES = [
     (
-        "Tiendas online",
-        [
-            ("vinted", "Vinted"),
-            ("amazon", "Amazon"),
-        ],
-    ),
-    (
         "Supermercados",
         [
             ("mercadona", "Mercadona"),
@@ -37,33 +30,29 @@ CATEGORY_RULES = [
             (re.compile(r"\bdia\b"), "Dia supermercado"),
             ("la sirena", "La Sirena super"),
             ("granier", "Granier super"),
-            (("supermerca", "supermarket", "minimarket", "super", "merca"), "Supermercado generico"),
+            (("supermerca", "supermarket", "minimarket", "super", "merca", "hiper"), "Supermercado generico"),
+            ("vendin", "Maquina expendedora"),
+            (("bazar", "xixi xu"), "Bazar"),
+            (("estanco", "tabac"), "Estanco"),
+            ("ramis sencelles", "Ramis Sencelles"),
         ],
     ),
     (
         "Tiendas fisicas",
         [
-            ("tiendanimal", "Tiendanimal"),
-            (("estanco", "tabac"), "Estanco"),
-            ("farmacia", "Farmacia"),
             ("el corte ingles", "El Corte Ingles"),
-            ("clinica dental", "Clinica Dental"),
-            ("humana", "Humana"),
             ("decathlon", "Decathlon"),
-            (("agapea", "libreria", "biblioteca"), "Libreria"),
             ("ikea", "Ikea"),
-            ("xocolat", "Xocolat CDs"),
             ("sapporet", "Sapporet Vapers"),
-            (("bazar", "xixi xu"), "Bazar"),
             ("tezenis", "Tezenis"),
             ("festival pa", "Festival Pa"),
+            ("fundas", "Fundas"),
 
             # Palabras clave que pertenecen a tiendas físicas
             ("monchis", "Monchis"),
             ("flor", "Floristeria"),
             (("barber", "peluqueria"), "Barberia Peluqueria"),
-            (("fruta", "verdura"), "Fruteria Verduleria"),
-
+            (("fruta", "verdura", "fruteria"), "Fruteria Verduleria"),
         ],
     ),
     (
@@ -75,6 +64,9 @@ CATEGORY_RULES = [
             ("bershka", "Bershka"),
             ("vans", "Vans"),
             ("urban outfitters", "Urban Outfitters"),
+            ("humana", "Humana"),
+            ("vinted", "Vinted"),
+            (re.compile(r"\bzara\b"), "Zara"),
         ],
     ),
     (
@@ -83,7 +75,7 @@ CATEGORY_RULES = [
             ("bk", "Burger King"),
             ("vicio", "Vicio"),
             ("kebab", "Kebab"),
-            ("mcdonalds", "McDonalds"),
+            (("mcdonalds", "macdonalds"), "McDonalds"),
             ("safra son caste", "Es Safra"),
             ("el perro lechero", "El Perro Lechero"),
             ("la bufala", "La Bufala"),
@@ -95,10 +87,9 @@ CATEGORY_RULES = [
 
             # Palabras clave que pertenecen a restaurantes
             (("llonguet", "cena", "cenita", "pizz", "hambur", "comida", "sopar", "pisa"), "Cena"),
-            (("asia", "susi", "sushi", "ramen", "wok"), "Restaurante Asiatico"),
+            (("asia", "susi", "sushi", "ramen", "wok", "suchi"), "Restaurante Asiatico"),
             (("taco", "taquero"), "Restaurante Mexicano"),
-            (("restaurante",), "Restaurante generico"),
-
+            (("restaurant",), "Restaurante generico"),
         ],
     ),
     (
@@ -133,7 +124,7 @@ CATEGORY_RULES = [
         [
             ("asociacion espanola contra el cancer", "Asociacion Cancer"),
             ("fundacion diabetes cero", "Fundacion Diabetes Cero"),
-            (("spotify", "spoty"), "Spotify"),
+            (("spotify", "spoty", "dpoti"), "Spotify"),
             ("renting tec", "Renting Movil"),
             ("liquidacion por bonificacion", "Bonificacion Movil"),
         ],
@@ -141,15 +132,13 @@ CATEGORY_RULES = [
     (
         "Varios",
         [
-            ("cajero", "Cajero"),
+            (("cajero", "efectivo", "efectiu"), "Cajero"),
             ("smap ora", "SMAP Ora"),
             ("devolucion", "Devolucion"),
-            ("salario", "Salario"),
             ("lavanderia", "Lavanderia"),
-            ("vendin", "Maquina expendedora"),
             ("wallapop", "Wallapop"),
-            (("cumpleaños", "cumple", "regal"), "Cumpleaños"),
-            (("sin concepto",), "Sin Concepto"),
+            (("tricount", "3count"), "Tricount"),
+            ("amazon", "Amazon"),
         ],
     ),
     (
@@ -182,19 +171,18 @@ CATEGORY_RULES = [
 
             # Palabras clave que pertenecen a transportes/viajes
             ("metro", "Metro"),
-            ("bus", "Bus"),
             ("parking", "Parking"),
             ("transport", "Transporte generico"),
+            (re.compile(r"\bbus\b"), "Bus"),
         ],
     ),
     (
-        "Ocio/Fiesta",
+        "Fiesta",
         [
             ("factoria de so", "Factoria de So"),
             ("catsmusics jazz", "Catsmusics Jazz"),
             ("atomic garden", "Atomic Garden"),
-            ("jovells", "Jovells (Festa?)"),
-            ("cinesa", "Cinesa"),
+            ("jovells", "Festes de Santa Maria"),
             ("es pou", "Es Pou"),
             ("dabadaba", "Dabadaba"),
             ("cafe milano", "Cafe Milano"),
@@ -205,16 +193,37 @@ CATEGORY_RULES = [
             ("apolo", "Apolo"),
             ("perku", "Perku Pub"),
             ("coyote", "Coyote Pub"),
-            ("quinta", "Quintades"),
-            (("biofesta", "bio"), "Biofesta"),
+            ("quintad", "Quintades"),
+            ("biofesta", "Biofesta"),
+            (re.compile(r"\bbio\b"), "Biofesta"),
+            (("festa", "paylogic"), "Fiesta Generica"),
         ],
     ),
+    (
+        "Ocio",
+        [
+            ("cinesa", "Cinesa"),
+            (("agapea", "libreria", "biblioteca"), "Libreria"),
+            ("xocolat", "Xocolat CDs"),
+            ("bowlin", "Bolos"),
+        ]
+    ), 
     (
         "Perros",
         [
             (("veterina", "cedivet"), "Veterinario"),
             (("pienso", "comida perro"), "Comida Perro"),
             (("cans", "perro", "mascota"), "Cosas de perros"),
+            ("tiendanimal", "Tiendanimal"),
+
+        ],
+    ),
+    (
+        "Salud",
+        [
+            (("farmacia", "vicente tomas m"), "Farmacia"),
+            ("clinica dental", "Clinica Dental"),
+            ("tricologia", "Tricologia"),
         ],
     ),
     (
@@ -230,6 +239,7 @@ CATEGORY_RULES = [
         [
             (("taller", "mecanico"), "Taller"),
             (("coche", "coch"), "Cosas de Coches"),
+            ("autodoc", "Autodoc"),
         ],
     ),
     (
@@ -249,14 +259,16 @@ CATEGORY_RULES = [
         [
             ("finetix limited", "Finetix"),
             ("inversion", "Inversiones"),
+            ("sp 500", "S&P 500"),
+            ("cryptos", "Cryptos"),
         ],
     ),
     (
         "Transferencias",
         [
-            (("transferencia", "transf"), "Transferencia"),
+            (("Transferencia De Axis Data", "salario"), "Nomina"),
+            ("transf", "Transferencia"),
             ("trade republic", "Trade Republic"),
-            (("tricount", "3count"), "Tricount"),
             (("impuesto", "hacienda"), "Impuestos"),
         ],
     ),
@@ -266,19 +278,46 @@ CATEGORY_RULES = [
             ("prima", "Prima"),
             ("generali", "Generali Seguros"),
         ],
-    )
+    ),
+    (
+        "Sin Concepto",
+        [
+            ("sin concepto", "Sin Concepto"),
+        ],
+    ),
 ]
 
 
-def categorizar(desc):
-    desc = desc.lower()
+def categorizar(desc: str, importe: float | None = None) -> tuple[str, str]:
+    """Assign a transaction description to a category + subcategory.
+
+    Special rule: if the description matches the "cumple"/"regal" keywords:
+    - Positive importe => Categoria: Varios, Subcategoria: Cumpleaños
+    - Negative importe => Categoria: Varios, Subcategoria: Regalo
+    """
+
+    desc = str(desc).lower()
+
+    cumple_keywords = ("cumple", "regal", "reyes")
+    if any(k in desc for k in cumple_keywords) and importe is not None:
+        if importe > 0:
+            return "Cumples/Reyes", "Regalo"
+        else:
+            return "Varios", "Regalo"
 
     for big_category, patterns in CATEGORY_RULES:
-        for pattern, label in patterns:
+        for item in patterns:
+            # Support both (pattern, label) and (pattern1, pattern2..., label)
+            if isinstance(item, (tuple, list)) and len(item) >= 2:
+                *pattern_values, label = item
+                pattern = pattern_values[0] if len(pattern_values) == 1 else tuple(pattern_values)
+            else:
+                continue
+
             if isinstance(pattern, str):
                 if pattern in desc:
                     return big_category, label
-            elif isinstance(pattern, tuple):
+            elif isinstance(pattern, (tuple, list)):
                 if any(p in desc for p in pattern):
                     return big_category, label
             else:  # regex
@@ -286,6 +325,42 @@ def categorizar(desc):
                     return big_category, label
 
     return "Otros", "Otros"
+
+
+def _plot_heatmap(
+    pivot: pd.DataFrame,
+    title: str,
+    output_path: Path,
+    cmap: str = "YlOrRd",
+    vmin: float | None = 0,
+    vmax: float | None = 1,
+):
+    """Plot a normalized heatmap from a pivot table."""
+
+    if pivot.empty:
+        return
+
+    # Normalize each row (category) by its maximum absolute value so that
+    # categories with only negative net spending still show a gradient.
+    row_max = pivot.abs().max(axis=1).replace(0, 1)
+    pivot_norm = pivot.div(row_max, axis=0).fillna(0)
+
+    plt.figure(figsize=(12, max(6, len(pivot_norm) * 0.25)))
+    sns.heatmap(
+        pivot_norm,
+        cmap=cmap,
+        linewidths=0.5,
+        vmin=vmin,
+        vmax=vmax,
+        annot=pivot.apply(lambda col: col.map(lambda v: f"{v:,.0f}")),
+        fmt="",
+    )
+    plt.title(title)
+    plt.xlabel("Mes")
+    plt.ylabel("Categoría")
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
 
 
 def generate_plots(df: pd.DataFrame):
@@ -296,49 +371,10 @@ def generate_plots(df: pd.DataFrame):
 
     # Ensure dates are sorted for time-series plots
     df_sorted = df.sort_values("fecha")
-
-    # 1) Spend by category (top 20)
-    spend_by_cat = (
-        df_sorted.groupby("categoria")["gasto"].sum().sort_values(ascending=False).head(20)
-    )
-    plt.figure(figsize=(10, 6))
-    sns.barplot(x=spend_by_cat.values, y=spend_by_cat.index, palette="viridis")
-    plt.title("Gasto total por categoría (top 20)")
-    plt.xlabel("Gasto (€)")
-    plt.tight_layout()
-    plt.savefig(plots_dir / "gasto_por_categoria.png")
-    plt.close()
-
-    # 2) Balance timeline
-    if "saldo" in df_sorted.columns and df_sorted["saldo"].notna().any():
-        plt.figure(figsize=(12, 5))
-        sns.lineplot(x="fecha", y="saldo", data=df_sorted, marker="o")
-        plt.title("Evolución del saldo")
-        plt.xlabel("Fecha")
-        plt.ylabel("Saldo")
-        plt.tight_layout()
-        plt.savefig(plots_dir / "saldo_timeline.png")
-        plt.close()
-
-    # 3) Biggest individual spends
-    biggest_spends = df_sorted.nlargest(15, "gasto")[["descripcion", "categoria", "gasto"]]
-    plt.figure(figsize=(10, 6))
-    sns.barplot(
-        x="gasto",
-        y="descripcion",
-        data=biggest_spends,
-        palette="magma",
-    )
-    plt.title("Mayores gastos individuales (top 15)")
-    plt.xlabel("Gasto (€)")
-    plt.ylabel("Descripción")
-    plt.tight_layout()
-    plt.savefig(plots_dir / "mayores_gastos.png")
-    plt.close()
-
-    # 4) Heatmap: gasto por categoría y mes
     df_sorted["mes"] = df_sorted["fecha"].dt.to_period("M").astype(str)
-    pivot = (
+
+    # Base spending pivot (gasto only)
+    gasto_pivot = (
         df_sorted[df_sorted["gasto"] > 0]
         .pivot_table(
             index="categoria",
@@ -348,128 +384,175 @@ def generate_plots(df: pd.DataFrame):
             fill_value=0,
         )
     )
-    if not pivot.empty:
-        pivot = pivot.loc[pivot.sum(axis=1).sort_values(ascending=False).index]
+    gasto_pivot = gasto_pivot.loc[gasto_pivot.sum(axis=1).sort_values(ascending=False).index]
 
-    if not pivot.empty:
-        plt.figure(figsize=(12, max(6, len(pivot) * 0.25)))
-        sns.heatmap(pivot, cmap="YlOrRd", linewidths=0.5)
-        plt.title("Gasto por categoría y mes")
-        plt.xlabel("Mes")
-        plt.ylabel("Categoría")
-        plt.tight_layout()
-        plt.savefig(plots_dir / "gasto_por_categoria_mes.png")
-        plt.close()
-
-        # Normalize per category (row) so each category is compared within itself
-        pivot_norm = pivot.div(pivot.max(axis=1), axis=0).fillna(0)
-        plt.figure(figsize=(12, max(6, len(pivot_norm) * 0.25)))
-        sns.heatmap(
-            pivot_norm,
-            cmap="YlOrRd",
-            linewidths=0.5,
-            vmin=0,
-            vmax=1,
-            annot=pivot.apply(lambda col: col.map(lambda v: f"{v:,.0f}")),
-            fmt="",
-        )
-        plt.title("Gasto por categoría y mes (normalizado por categoría)")
-        plt.xlabel("Mes")
-        plt.ylabel("Categoría")
-        plt.tight_layout()
-        plt.savefig(plots_dir / "gasto_por_categoria_mes_normalized.png")
-        plt.close()
-
-    # 5) Monthly trend per category (compare each category with itself across months)
-    monthly = (
-        df_sorted[df_sorted["gasto"] > 0]
-        .groupby(["categoria", "mes"])["gasto"]
-        .sum()
-        .reset_index()
+    _plot_heatmap(
+        gasto_pivot,
+        "Gasto por categoría y mes (normalizado por categoría)",
+        plots_dir / "spending_heatmap.png",
     )
-    if not monthly.empty:
-        # Keep only top categories by total spend to avoid overcrowded plots
-        top_categories = (
-            monthly.groupby("categoria")["gasto"].sum().nlargest(10).index
+
+    # Net spending (gasto - ingreso)
+    net_pivot = (
+        df_sorted
+        .pivot_table(
+            index="categoria",
+            columns="mes",
+            values=["gasto", "ingreso"],
+            aggfunc="sum",
+            fill_value=0,
         )
-        monthly_top = monthly[monthly["categoria"].isin(top_categories)].copy()
+    )
+    net_pivot = net_pivot["gasto"] - net_pivot["ingreso"]
+    net_pivot = net_pivot.fillna(0)
+    net_pivot = net_pivot.loc[net_pivot.sum(axis=1).sort_values(ascending=False).index]
 
-        # Exclude Seguros from this plot (requested)
-        monthly_top = monthly_top[monthly_top["categoria"] != "Seguros"].copy()
+    _plot_heatmap(
+        net_pivot,
+        "Gasto neto por categoría y mes (gasto - ingreso)",
+        plots_dir / "spending_heatmap_net.png",
+        cmap="RdYlGn_r",
+        vmin=-1,
+        vmax=1,
+    )
 
-        # Ensure log-scale works (cannot plot 0)
-        monthly_top["gasto"] = monthly_top["gasto"].clip(lower=1)
-        monthly_top["mes_dt"] = pd.to_datetime(monthly_top["mes"])
-
-        plt.figure(figsize=(12, 6))
-        sns.lineplot(
-            data=monthly_top,
-            x="mes_dt",
-            y="gasto",
-            hue="categoria",
-            marker="o",
-        )
-        ax = plt.gca()
-        ax.set_yscale("symlog", linthresh=250, linscale=1)
-        ax.yaxis.set_major_formatter(mticker.FuncFormatter(lambda y, _: f"{int(y):,}"))
-        ax.yaxis.set_minor_formatter(mticker.NullFormatter())
-        ax.yaxis.set_major_locator(mticker.MaxNLocator(nbins=10, integer=True))
-
-        # Annotate the latest value for each category at the right edge
-        last_month = monthly_top["mes_dt"].max()
-        last_values = (
-            monthly_top[monthly_top["mes_dt"] == last_month]
-            .set_index("categoria")["gasto"]
-        )
-        for cat, line in zip(monthly_top["categoria"].unique(), ax.lines):
-            if cat in last_values:
-                y = last_values[cat]
-                # Normalize y for symlog plotting
-                ax.text(
-                    last_month,
-                    y,
-                    f" {int(y):,}",
-                    va="center",
-                    ha="left",
-                    fontsize=8,
-                )
-
-        plt.title("Gasto mensual por categoría (top 10, sin Seguros)")
-        plt.xlabel("Mes")
-        plt.ylabel("Gasto (€)")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        plt.savefig(plots_dir / "gasto_mensual_por_categoria.png")
-        plt.close()
+    # 2) Biggest individual spends
+    biggest_spends = df_sorted.nlargest(15, "gasto")[["descripcion", "categoria", "gasto"]]
+    plt.figure(figsize=(10, 6))
+    sns.barplot(
+        x="gasto",
+        y="descripcion",
+        data=biggest_spends,
+        hue="descripcion",
+        palette="magma",
+        dodge=False,
+    )
+    plt.legend([], [], frameon=False)
+    plt.title("Mayores gastos individuales (top 15)")
+    plt.xlabel("Gasto (€)")
+    plt.ylabel("Descripción")
+    plt.tight_layout()
+    plt.savefig(plots_dir / "biggest_individual_spends.png")
+    plt.close()
 
     print(f"\nCharts written to: {plots_dir.resolve()}")
 
 
-def read_excels(__file__):
-    excel_dir = Path(__file__).parent / "excels"
-    excel_files = list(excel_dir.glob("*.xls"))
+EXCEL_GLOB_PATTERN = "*.xls"
+OUTPUT_FILENAME = "processed_transactions.xlsx"
+
+
+def _sanitize_sheet_name(name: str) -> str:
+    """Normalize a string to a valid Excel sheet name."""
+
+    invalid = r"[]:*?/\\"
+    clean = "".join(c for c in str(name) if c not in invalid)
+    return clean[:31]
+
+
+def _format_sheet(
+    worksheet,
+    data_frame: pd.DataFrame,
+    workbook,
+    date_fmt,
+    date_bold_center_fmt,
+):
+    """Apply consistent formatting to a worksheet containing `data_frame`."""
+
+    # Header formatting
+    header_fmt = workbook.add_format({"bold": True, "bg_color": "#D9D9D9", "align": "center"})
+    for col_num, value in enumerate(data_frame.columns):
+        worksheet.write(0, col_num, value, header_fmt)
+
+    # Base cell formats
+    center_fmt = workbook.add_format({"align": "center"})
+    left_fmt = workbook.add_format({"align": "left"})
+    bold_center_fmt = workbook.add_format({"bold": True, "align": "center"})
+
+    for col_num, col in enumerate(data_frame.columns):
+        max_len = max(data_frame[col].astype(str).map(len).max(), len(col)) + 2
+
+        if col == "fecha":
+            fmt = date_bold_center_fmt
+        elif col == "categoria":
+            fmt = bold_center_fmt
+        elif col == "descripcion":
+            fmt = left_fmt
+        else:
+            fmt = center_fmt
+
+        worksheet.set_column(col_num, col_num, max_len, fmt)
+
+    # Conditional formatting for importe: green for positive, red for negative
+    if "importe" in data_frame.columns:
+        importe_col = data_frame.columns.get_loc("importe")
+        fmt_pos = workbook.add_format({"font_color": "green"})
+        fmt_neg = workbook.add_format({"font_color": "red"})
+        worksheet.conditional_format(
+            1,
+            importe_col,
+            len(data_frame),
+            importe_col,
+            {"type": "cell", "criteria": ">", "value": 0, "format": fmt_pos},
+        )
+        worksheet.conditional_format(
+            1,
+            importe_col,
+            len(data_frame),
+            importe_col,
+            {"type": "cell", "criteria": "<", "value": 0, "format": fmt_neg},
+        )
+
+    # Force fecha to be displayed in dd/mm/yyyy, bold, and centered by rewriting the datetime cells
+    if "fecha" in data_frame.columns:
+        fecha_col = data_frame.columns.get_loc("fecha")
+        for row_idx, value in enumerate(data_frame["fecha"], start=1):
+            if pd.notna(value):
+                worksheet.write_datetime(
+                    row_idx, fecha_col, value.to_pydatetime(), date_bold_center_fmt
+                )
+
+    # Zebra striping for easier reading
+    zebra_fmt = workbook.add_format({"bg_color": "#F2F2F2"})
+    worksheet.conditional_format(
+        1,
+        0,
+        len(data_frame),
+        len(data_frame.columns) - 1,
+        {
+            "type": "formula",
+            "criteria": "=MOD(ROW(),2)=0",
+            "format": zebra_fmt,
+        },
+    )
+
+
+def read_excels(excel_dir: Path | str, pattern: str = EXCEL_GLOB_PATTERN) -> list[pd.DataFrame]:
+    """Load all Excel files matching a glob pattern and return a list of DataFrames."""
+
+    excel_dir = Path(excel_dir)
+    excel_files = list(excel_dir.glob(pattern))
     print(f"Found {len(excel_files)} Excel files:")
     for file in excel_files:
         print(f"  - {file}")
 
-    dfs = [pd.read_excel(file).iloc[7:] for file in excel_files]
-    return dfs
+    return [pd.read_excel(file).iloc[7:] for file in excel_files]
 
-dfs = read_excels(__file__)
 
-if not dfs:
-    print("No Excel files found in the specified directory.")
-else:
-    df = pd.concat(dfs, ignore_index=True)
-    df.drop_duplicates(inplace=True)
+def prepare_transactions(df: pd.DataFrame) -> pd.DataFrame:
+    """Clean and enrich the transactions DataFrame."""
 
+    df = df.copy()
+
+    # Remove redundant first column introduced by the source Excel files
     df.drop(df.columns[0], axis=1, inplace=True)
 
     df.columns = ["fecha", "descripcion", "importe", "saldo"]
-    df["fecha"] = pd.to_datetime(df["fecha"], format="%d/%m/%Y")
+    df["fecha"] = pd.to_datetime(df["fecha"], format="%d/%m/%Y", errors="coerce")
 
     df[["categoria", "subcategoria"]] = pd.DataFrame(
-        df["descripcion"].apply(categorizar).tolist(), index=df.index
+        df.apply(lambda row: categorizar(row["descripcion"], row["importe"]), axis=1).tolist(),
+        index=df.index,
     )
     df = df[df["categoria"] != "Transferencias"].reset_index(drop=True)
 
@@ -481,7 +564,90 @@ else:
     df["gasto"] = -df["importe"].where(df["importe"] < 0, 0)
     df["ingreso"] = df["importe"].where(df["importe"] > 0, 0)
 
+    return df
+
+
+def save_transactions_xlsx(df: pd.DataFrame, out_xlsx: Path):
+    """Save transactions to an Excel file with nice formatting."""
+
+    df_export = df.sort_values("fecha", ascending=False).reset_index(drop=True)
+    # df_export = df_sorted.drop(columns=["gasto", "ingreso"], errors="ignore")
+
+    try:
+        with pd.ExcelWriter(
+            out_xlsx,
+            engine="xlsxwriter",
+            date_format="dd/mm/yyyy",
+            datetime_format="dd/mm/yyyy",
+        ) as writer:
+            workbook = writer.book
+
+            # Format helpers
+            date_fmt = workbook.add_format({"num_format": "dd/mm/yyyy", "align": "center"})
+            date_bold_center_fmt = workbook.add_format(
+                {"num_format": "dd/mm/yyyy", "align": "center", "bold": True}
+            )
+
+            # Full sheet with all transactions
+            full_sheet_name = "Todos" if "Todos" not in writer.sheets else "Todos_1"
+            df_export.to_excel(writer, index=False, sheet_name=full_sheet_name)
+            _format_sheet(
+                writer.sheets[full_sheet_name],
+                df_export,
+                workbook,
+                date_fmt,
+                date_bold_center_fmt,
+            )
+
+            # Per-category sheets
+            seen = {full_sheet_name}
+            for category, group in df_export.groupby("categoria"):
+                if not str(category).strip():
+                    continue
+
+                sheet_name = _sanitize_sheet_name(category) or "SinCat"
+                base = sheet_name
+                suffix = 1
+                while sheet_name in seen:
+                    sheet_name = f"{base}_{suffix}"
+                    suffix += 1
+                seen.add(sheet_name)
+
+                group.to_excel(writer, index=False, sheet_name=sheet_name)
+                _format_sheet(
+                    writer.sheets[sheet_name],
+                    group,
+                    workbook,
+                    date_fmt,
+                    date_bold_center_fmt,
+                )
+
+        print(f"Formatted Excel written to: {out_xlsx.resolve()}")
+    except Exception as e:
+        print(f"Could not write Excel file: {e}")
+
+
+def main():
+    excel_dir = Path(__file__).parent / "excels"
+    dfs = read_excels(excel_dir)
+
+    if not dfs:
+        print("No Excel files found in the specified directory.")
+        return
+
+    df = pd.concat(dfs, ignore_index=True)
+    df.drop_duplicates(inplace=True)
+
+    df = prepare_transactions(df)
+
     print("Shape of the merged dataframe:", df.shape)
 
+    out_xlsx = Path(__file__).parent / OUTPUT_FILENAME
+    save_transactions_xlsx(df, out_xlsx)
+
     generate_plots(df)
+
+
+if __name__ == "__main__":
+    main()
 
